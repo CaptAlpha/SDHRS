@@ -77,19 +77,21 @@ color: white;
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-evenly;
-    margin-left: 9%;
+    justify-content: space-between;
+    margin-left: 4%;
     margin-top: 8%;
 }
 .card1 {
     display: flex;
     flex-direction: column;
-
+    line-height: 5px;
 }
 .card_img {
-    height: 50%;
-    width: 50%;
+    height: 40%;
+    width: 80%;
     background-color: aqua;
+    border-radius: 35px;
+    margin-bottom: 3%;
 }
 .searchform {
     background: #F9F7F7;
@@ -128,9 +130,34 @@ color: white;
   
 }
 .buttonimage {
- 
+    background-color: transparent;
     height: 30px;
     width: 30px;
     
 }
 
+
+
+.card_info {
+    display: flex;
+    width: 80%;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+.hospitalName {
+    width:14vw;
+    height: 6vh;
+    border: transparent;
+    font-family: 'Poppins', sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 20px;
+    margin-left: -3vw;
+    margin-top: -1.5vh;
+    margin-bottom: -1.5vh;
+}
+.star {
+    margin-top: -1vh;
+    width:22%;
+}
