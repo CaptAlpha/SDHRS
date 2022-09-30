@@ -1,0 +1,136 @@
+body{
+    background-color:#F3F3FD;
+}
+.navbar {
+    display: flex;
+    justify-content:space-around;
+    font-size: 25px;
+    font-weight: 400;
+    margin-bottom: 3vh;
+    font-family: 'Poppins', sans-serif;
+    margin-bottom:4%;
+}
+
+.start {
+    font-family: 'Manrope', sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+}
+.end {
+background: linear-gradient(96.14deg, #3A8EF6 -10.84%, #6F3AFA 196.74%);
+border-radius: 17.0492px;
+height: 6vh;
+width: 10vw;
+border: transparent;
+margin-left: 6vh;
+margin-top: 3vh;
+font-weight: bold;
+font-family: 'Poppins', sans-serif;
+color: white;
+}
+.heading {
+    margin-top: 15vh;
+    margin-left: 40vw;
+}
+.p1 {
+    margin-top: -6.5%;
+    margin-left: 7.5%;
+    font-family: 'Manrope', sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    color: #8A8585;
+}
+.slides {
+    margin-left: 17%;
+    display: flex;
+    flex-direction: row;
+    text-decoration: none;   
+    list-style-type: none; 
+    cursor: pointer;
+}
+.part1 {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content:space-around;
+}
+/* .text {
+    font-size: 25px;
+    font-weight: bold;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    height: 50%;
+    width: 70%;
+    margin-left: 25%;
+} */
+
+.text-img {
+    margin-left: 7.5%;
+    height: 40%;
+    width: 40%;
+}
+.doctor {
+    
+    height: 90%;
+    width: 90%;
+}
+.card {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-left: 9%;
+    margin-top: 8%;
+}
+.card1 {
+    display: flex;
+    flex-direction: column;
+
+}
+.card_img {
+    height: 50%;
+    width: 50%;
+    background-color: aqua;
+}
+.searchform {
+    background: #F9F7F7;
+    box-shadow: 2px 6px 4px rgba(145, 139, 139, 0.4);
+    border-radius: 50px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #F3F3FD;
+    height: 8vh;
+    width: 35vw;
+    margin-top:8vh;
+    margin-left: 7.2vw;
+}
+
+.all {
+    width: 60%;
+    height: 6vh;
+    background-color: transparent;
+    border:transparent;
+    text-decoration: none;
+    padding-left: 20px;
+
+
+}
+.searchbar
+{ 
+  cursor: pointer;
+  width: 25px;
+  height:25px;
+  border: 0;
+  border:transparent;
+  text-decoration: none;
+  margin-right: 5%;
+  
+}
+.buttonimage {
+ 
+    height: 30px;
+    width: 30px;
+    
+}
+
