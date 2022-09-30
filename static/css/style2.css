@@ -1,4 +1,6 @@
 body {
-    background: linear-gradient(180deg, #F3F3FD 73.75%, #87B7FF 100%);
-
+    background-image: url(../images/bg2.svg);
+    background-size: 70%;
+    background-repeat: repeat-x;
+    
 }
