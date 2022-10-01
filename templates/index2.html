@@ -39,7 +39,8 @@
             <div class="hosteldetails">
                 <div class="heading">
                     <h4>{{hospitalName}}</h4>
-                    <img src="../static/images/Group 237464.svg" alt="" class="star">
+                    <h4>⭐{{avgRating}}</h4>
+                    <!-- <img src="../static/images/Group 237464.svg" alt="" class="star"> -->
                 </div>
                 <div class="info">
                     <p><img src="../static/images/location.png" alt="" class="a">{{cityName}}</p>
@@ -51,7 +52,7 @@
             <div class="c2a">
                 <div class="review"><img src="../static/images/avg.png" alt="" class="c">
                     <p>AVERAGE RATING<br>
-                        <p>25 verified review</p>
+                        <p>{{reviewList.split('||')|length}} verified review</p>
                 </div>
                 <div class="dataset">
                     <p>World Cloud</p>
@@ -62,10 +63,9 @@
             <script>
                 // perform this when page loads
                 window.onload = function () {
-                    // get all reviews by splitting reviewList using \n
-                    console.log(reviewList);
                     var reviewList = "{{reviewList}}".split("||");
-                    console.log(reviewList[0]);
+                    var ratingList = "{{ratingList}}".split("||");
+                    var dateList = "{{dateList}}".split("||");
                     // get container2
                     var container2 = document.getElementsByClassName("container2")[0];
                     // loop through all reviews
@@ -74,12 +74,18 @@
                         var div = document.createElement("div");
                         // add class
                         div.classList.add("c2b");
-                        // create img
-                        var img = document.createElement("img");
-                        // add src
-                        img.src = "../static/images/star-rating.png";
-                        // add class
-                        img.classList.add("ratig");
+                        // add star ratings using ratingList
+                        var rating = document.createElement("div");
+                        rating.classList.add("rating");
+                        for (var j = 0; j < ratingList[i]; j++) {
+                            var img = document.createElement("img");
+                            img.src = "../static/images/star-rating.png";
+                            img.alt = "";
+                            // img.classList.add("star");
+                            rating.appendChild(img);
+                        }
+                        div.appendChild(rating);
+
                         // create p
                         var p = document.createElement("p");
                         // add text
@@ -87,9 +93,10 @@
                         // create p
                         var p2 = document.createElement("p");
                         // add text
-                        p2.innerText = "25.06.22";
+                        p2.innerText = dateList[i];
                         // append img, p, p2 to div
-                        div.appendChild(img);
+                        // div.appendChild(img);
+
                         div.appendChild(p);
                         div.appendChild(p2);
                         // append div to container2

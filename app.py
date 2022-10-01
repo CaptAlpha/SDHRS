@@ -29,10 +29,18 @@ def index():
         hospital=Hospital.query.filter_by(name=hosp).first()
         city=City.query.filter_by(id=hospital.city_id).first()
         reviews=Review.query.filter_by(hospital_id=hospital.id).all()
+
         #get the reviews and put them in a list
         reviewList=[]
+        ratingList=[]
+        dateList=[]
         for review in reviews:
             reviewList.append(review.review)
+            ratingList.append(float(review.rating))
+            dateList.append(review.date_created)
+        print(ratingList)
+        avgRating=sum(ratingList)/len(ratingList)
+        avgRating=round(avgRating,2)
         #get the hospital name and city
         hospitalName=hospital.name
         cityName=city.name
@@ -41,11 +49,16 @@ def index():
         #get the wordcloud
         generate_wordcloud(reviewList)
 
-        print(reviewList)
+        #convert ratings to str
+        for i in range(len(ratingList)):
+            ratingList[i]=str(ratingList[i])
+    
         # join the reviews by \n
         reviewString='||'.join(reviewList)
+        ratingString='||'.join(ratingList)
+        dateString='||'.join(dateList)
         #redirect to transaction route
-        return redirect(url_for('addReview', hospitalName=hospitalName, cityName=cityName, speciality=speciality,reviewList=reviewString))
+        return redirect(url_for('addReview', hospitalName=hospitalName, cityName=cityName, speciality=speciality,reviewList=reviewString,avgRating=avgRating, ratingList=ratingString, dateList=dateString))
 
     return render_template('index.html')
 
@@ -53,7 +66,7 @@ def index():
 def addReview():
     if request.method=='POST':
         return redirect(url_for('txn'))
-    return render_template('index2.html', hospitalName=request.args.get('hospitalName'), cityName=request.args.get('cityName'), speciality=request.args.get('speciality'), reviewList=request.args.get('reviewList'))
+    return render_template('index2.html', hospitalName=request.args.get('hospitalName'), cityName=request.args.get('cityName'), speciality=request.args.get('speciality'), reviewList=request.args.get('reviewList'),ratingList=request.args.get('ratingList'),avgRating=request.args.get('avgRating'),dateList=request.args.get('dateList'))
     
 
 @app.route('/transaction', methods=['GET', 'POST'])
@@ -62,7 +75,6 @@ def txn():
         review = request.form['review']
         pp = request.form['pp']
         hospitalName = request.form['hospitalName']
-
         algod_address = "https://testnet-algorand.api.purestake.io/ps2"
         algod_token = ""
         headers = {
