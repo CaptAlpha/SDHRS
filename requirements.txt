@@ -15,3 +15,4 @@ py-algorand-sdk
 requests
 urllib3==1.26.12
 pandas
+gunicorn

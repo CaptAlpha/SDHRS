@@ -105,7 +105,7 @@ cursor: pointer;
 .card_img {
     height: 40%;
     width: 80%;
-    background-color: aqua;
+    /* background-color: aqua; */
     border-radius: 35px;
     margin-bottom: 3%;
 }
