@@ -1,14 +1,9 @@
 body{
     background-color:#F3F3FD;
 }
-.navbar {
-    display: flex;
-    justify-content:space-around;
-    font-size: 25px;
-    font-weight: 400;
-    margin-bottom: 3vh;
-    font-family: 'Poppins', sans-serif;
-    margin-bottom:4%;
+.logo {
+    margin-left: 16vh;
+    width: 15%;
 }
 textarea, input { outline: none; }
 .start {

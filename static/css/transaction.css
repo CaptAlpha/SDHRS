@@ -5,14 +5,9 @@ body {
     
 }
 textarea, input { outline: none; }
-.navbar {
-    display: flex;
-    justify-content:space-around;
-    font-size: 25px;
-    font-weight: 400;
-    margin-bottom: 3vh;
-    font-family: 'Poppins', sans-serif;
-    margin-bottom:4%;
+.logo {
+    margin-left: 21vh;
+    width: 15%;
 }
 
 .start {
