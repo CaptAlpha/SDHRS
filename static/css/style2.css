@@ -54,13 +54,15 @@ color: white;
     font-size: 12px;
 }
 .arr {
-    width: 15%;
+    margin-top: 2px;
+    width: 13%;
 }
 .revi {
-    margin-bottom: 3vh;
+    margin-bottom: 2vh;
     font-size: 1.5vw;
     margin-left: 1vw;
     color: white;
+    cursor: pointer;
 
 }
 .back {
@@ -68,15 +70,19 @@ color: white;
     font-size: 1.5vw;
     margin-left: 1vw;
     color: white;
+    cursor: pointer;
 }
 
 .review {
-    margin-bottom: 2vh;
-    font-size: 1.5vw;
-    color: white;
-    width: 40%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 1vw;
+    font-family: 'Poppins', sans-serif;
+    width: 50%;
     background-color: white;
-    padding: 6vh;
+    padding-top: 10px;
     
 }
 .hospitalimg {
@@ -139,7 +145,6 @@ color: white;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-  
     gap: 3vh;
     
 }
@@ -154,6 +159,7 @@ color: white;
     background-color: white;
     font-size: 15px;
     height: fit-content;
+    margin-top: 5px;
 }
 .c2c {
     
@@ -183,6 +189,7 @@ color: white;
     justify-content: center;
     align-items: center;
     background-color: white;
+    margin-top: 5px;
 }
 
 .clic {
