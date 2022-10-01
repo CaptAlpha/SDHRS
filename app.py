@@ -70,7 +70,8 @@ def addReview():
     if request.method=='POST':
         return redirect(url_for('txn'))
     return render_template('index2.html', hospitalName=request.args.get('hospitalName'), cityName=request.args.get('cityName'), speciality=request.args.get('speciality'), reviewList=request.args.get('reviewList'),ratingList=request.args.get('ratingList'),avgRating=request.args.get('avgRating'),dateList=request.args.get('dateList'))
-    
+
+CLIENT_PASSP = ''
 
 @app.route('/transaction', methods=['GET', 'POST'])
 def txn():
@@ -94,6 +95,7 @@ def txn():
         print("Client address: {}".format(client_address))
         client_SK = mnemonic.to_private_key(client_pp)
         print("Client private key: {}".format(client_SK))
+        CLIENT_PASSP = client_pp
 
         # Initialize an algod client
         algod_client = algod.AlgodClient(algod_token, algod_address, headers)
@@ -115,7 +117,7 @@ def txn():
         else:
             print("Transaction Failed")
             txnStr = str('Transaction Failed')
-        return redirect(url_for('success', result=txnStr, VERIFICATION_TOKEN=VERIFICATION_TOKEN, hospitalName=hospitalName, review=review))
+        return redirect(url_for('success', result=txnStr, VERIFICATION_TOKEN=VERIFICATION_TOKEN, hospitalName=hospitalName, review=review, client_pp=client_pp))
         
     return render_template('transaction.html')
 
@@ -125,6 +127,7 @@ print(VERIFICATION_TOKEN)
 def success():
     VERIFICATION_TOKEN = request.args.get('VERIFICATION_TOKEN')
     hospitalName = request.args.get('hospitalName')
+    CLIENT_PASSP = request.args.get('client_pp')
     review = request.args.get('review')
     if(VERIFICATION_TOKEN):
         #check genuinity of the review
@@ -137,9 +140,48 @@ def success():
             #get id from hospital name
             hospital=Hospital.query.filter_by(name=hospitalName).first()
             id=hospital.id
-            newReview=Review(name='Anonymous',review=review,hospital_id=id,date_created='01/10/22')
-            DB.session.add(newReview)
-            DB.session.commit()
+            # Return the transaction back to client
+             # my_wallet
+            algod_address = "https://testnet-algorand.api.purestake.io/ps2"
+            algod_token = ""
+            headers = {
+                "X-API-Key": "LznYKjBylk53uEV5UDlN57lolkR64tnr1VHwsM19",
+            }
+
+            # my_wallet
+            my_address = 'QZ4JHEU6QEXZCB52W7ABKLOXNSH6PBOSFNU4VVJNYNCIRVAP6UWLB3IQMU'
+            my_passphrase = 'cargo blush ocean cluster divert spider bunker gain excite shop jeans romance buzz loan potato stick people receive cross cheese unfair alter wild ability drop'
+            
+            client_pp = CLIENT_PASSP
+
+            client_address = mnemonic.to_public_key(client_pp)
+            print("Client address: {}".format(client_address))
+            client_SK = mnemonic.to_private_key(client_pp)
+            print("Client private key: {}".format(client_SK))
+
+            # My wallet
+            my_address = 'QZ4JHEU6QEXZCB52W7ABKLOXNSH6PBOSFNU4VVJNYNCIRVAP6UWLB3IQMU'
+            my_sk = mnemonic.to_private_key(my_passphrase)
+            print("My address: {}".format(my_address))
+            print("My private key: {}".format(my_sk))
+
+
+            # Initialize an algod client
+            algod_client = algod.AlgodClient(algod_token, algod_address, headers)
+
+            # Get the relevant params from the algod    
+            params = algod_client.suggested_params()
+            params.flat_fee = True
+            params.fee = 1000
+            send_amount = 110000
+
+            # Send the transaction from my wallet to the client
+            txn = transaction.PaymentTxn(my_address, params, client_address, send_amount)
+            signed_txn = txn.sign(my_sk)
+
+
+            txid = algod_client.send_transaction(signed_txn)
+            
             return render_template('txnsucess.html', txnid=VERIFICATION_TOKEN,result=genuinity)
         else:
             return render_template('failure.html')
