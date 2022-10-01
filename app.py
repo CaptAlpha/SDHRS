@@ -35,7 +35,7 @@ def index():
         if len(reviews)==0:
             avgRatings.append(0)
         else:
-            avgRatings.append(sum([review.rating for review in reviews])/len(reviews))
+            avgRatings.append(round(sum([review.rating for review in reviews])/len(reviews),2))
     #get city of hospitals from db using city table
     cities=[]
     for hospital in hospitals:
