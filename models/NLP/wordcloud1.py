@@ -7,8 +7,7 @@ def generate_wordcloud(string_list):
     # Display the generated image:
     plt.imshow(wordcloud, interpolation='bilinear')
     plt.axis("off")
-    plt.show()
-
-generate_wordcloud(string_list)
+    #convert to png
+    plt.savefig('static\images\wordcloud.png')
 
     
