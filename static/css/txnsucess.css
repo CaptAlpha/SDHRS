@@ -2,5 +2,57 @@ body {
     background-image: url(../images/bg2.svg);
     background-size: 70%;
     background-repeat: repeat-x;
+    font-family: 'Manrope', sans-serif;
 }
 textarea, input { outline: none; }
+.navbar {
+    display: flex;
+    justify-content:space-around;
+    font-size: 25px;
+    font-weight: 400;
+    margin-bottom: 3vh;
+    font-family: 'Manrope', sans-serif;
+    margin-bottom:4%;
+}
+
+.start {
+    font-family: 'Manrope', sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+}
+.end {
+background: linear-gradient(96.14deg, #3A8EF6 -10.84%, #6F3AFA 196.74%);
+border-radius: 17.0492px;
+height: 6vh;
+width: 10vw;
+border: transparent;
+margin-left: 6vh;
+margin-top: 3vh;
+font-weight: bold;
+color: white;
+cursor: pointer;
+}
+.final {
+    width:7%;
+}
+
+h2 {
+    margin-bottom: -1vh;
+}
+.main_container {
+    margin-top: 22vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+p {
+    text-align: center;
+   
+}
+.al {
+    font-weight: 550;
+}
+.main_container a {
+    color: #1678F2;
+}
