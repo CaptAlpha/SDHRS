@@ -88,7 +88,7 @@ cursor: pointer;
     font-family: 'Poppins', sans-serif;
     width: 50%;
     background-color: white;
-    padding-top: 10px;
+    padding-top: 30%;
     
 }
 .hospitalimg {
@@ -215,5 +215,21 @@ cursor: pointer;
 }
 
 .cloud {
-    width: 80%;
+    width: 100%;
+    height: 100%;
+}
+
+.rating {
+    /* font-size: 1.5em; */
+    font-family: 'Poppins', sans-serif;
+    font-weight: bolder;
+    font-size: 70px;
+}
+
+/* add a text after rating */
+.rating::after {
+    content: "/5";
+    font-size: 0.5em;
+    font-weight: bolder;
+    font-family: 'Poppins', sans-serif;
 }
