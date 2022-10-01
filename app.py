@@ -40,40 +40,64 @@ def index():
         speciality=hospital.speciality
         #get the wordcloud
         generate_wordcloud(reviewList)
+
+        print(reviewList)
+        #join the reviews by \n
+        # reviewString='\n'.join(reviewList)
+        #redirect to transaction route
+        return redirect(url_for('addReview', hospitalName=hospitalName, cityName=cityName, speciality=speciality,reviewList=reviewList))
         
-        return render_template('details.html',hospitalName=hospitalName,cityName=cityName,speciality=speciality,reviewList=reviewList)
+        # return render_template('details.html',hospitalName=hospitalName,cityName=cityName,speciality=speciality,reviewList=reviewList)
 
     return render_template('index.html')
 
 
-@app.route('/classify', methods=['GET', 'POST'])
-def classify():
-    if request.method == 'POST':
-        review = request.form['review']
-        response = co.classify(inputs=[review], model='996de6b6-76c2-411b-97b7-aa58f15e75ad-ft')
-        prediction=response.classifications[0].prediction
-        confidence=response.classifications[0].confidence[int(prediction)].confidence
-        genuinity='genuine' if int(prediction)==0 else 'fake'
-        return render_template('index.html', result='Your review is {:0.2f}% {}'.format(confidence*100, genuinity))
+# @app.route('/classify', methods=['GET', 'POST'])
+# def classify():
+#     if request.method == 'POST':
+#         review = request.form['review']
+#         response = co.classify(inputs=[review], model='996de6b6-76c2-411b-97b7-aa58f15e75ad-ft')
+#         prediction=response.classifications[0].prediction
+#         confidence=response.classifications[0].confidence[int(prediction)].confidence
+#         genuinity='genuine' if int(prediction)==0 else 'fake'
+#         return render_template('index.html', result='Your review is {:0.2f}% {}'.format(confidence*100, genuinity))
 
-    return render_template('index.html')
+#     return render_template('index.html')
+
+# @app.route('/addReview', methods=['GET', 'POST'])
+# def addReview():
+#     if request.method == 'POST':
+#         review = request.form['review']
+#         hospitalName = request.form['hospitalName']
+#         #get the hospital id
+#         hospital=Hospital.query.filter_by(name=hospitalName).first()
+#         hospitalId=hospital.id
+#         #write hospitalID and review to a file
+#         with open('../static/reviews.txt', 'a') as f:
+#             f.write(hospitalId+' '+review+'\n')
+        
+#         return redirect(url_for('index'))
+#     return render_template('addReview.html')
 
 @app.route('/addReview', methods=['GET', 'POST'])
 def addReview():
-    if request.method == 'POST':
-        review = request.form['review']
-        hospitalName = request.form['hospitalName']
-        hospital=Hospital.query.filter_by(name=hospitalName).first()
-        review=Review(review=review,hospital_id=hospital.id)
-        DB.session.add(review)
-        DB.session.commit()
-        return redirect(url_for('index'))
-    return render_template('addReview.html')
+    if request.method=='POST':
+        return redirect(url_for('transaction'))
+    return render_template('index2.html', hospitalName=request.args.get('hospitalName'), cityName=request.args.get('cityName'), speciality=request.args.get('speciality'), reviewList=request.args.get('reviewList'))
+    
 
 @app.route('/transaction', methods=['GET', 'POST'])
 def txn():
     if request.method == 'POST':
+        review = request.form['review']
         pp = request.form['pp']
+        hospitalName = request.form['hospitalName']
+        #get the hospital id
+        # hospital=Hospital.query.filter_by(name=hospitalName).first()
+        # hospitalId=hospital.id
+        #write hospitalID and review to a file
+        # with open('static/reviews.txt', 'w+') as f:
+        #     f.write(str(hospitalId)+' '+review+'\n')
 
         algod_address = "https://testnet-algorand.api.purestake.io/ps2"
         algod_token = ""
@@ -106,16 +130,15 @@ def txn():
         
         txid = algod_client.send_transaction(signed_txn)
         if(txid):
-            # print("Transaction sent, transaction ID: {}".format(txid))
+            print("Transaction sent, transaction ID: {}".format(txid))
             txnStr = str('Transaction Successful with TransactionID: {}'.format(txid))
             VERIFICATION_TOKEN = txid
-            return redirect(url_for('success', result=txnStr, VERIFICATION_TOKEN=VERIFICATION_TOKEN))
+            # return redirect(url_for('success', result=txnStr, VERIFICATION_TOKEN=VERIFICATION_TOKEN, hospitalName=hospitalName, review=review))
         else:
             print("Transaction Failed")
             txnStr = str('Transaction Failed')
-        return render_template('success.html', result=txnStr, VERIFICATION_TOKEN=VERIFICATION_TOKEN)
+        return redirect(url_for('success', result=txnStr, VERIFICATION_TOKEN=VERIFICATION_TOKEN, hospitalName=hospitalName, review=review))
         
-
     return render_template('transaction.html')
 
 print(VERIFICATION_TOKEN)
@@ -123,9 +146,23 @@ print(VERIFICATION_TOKEN)
 @app.route('/success', methods=['GET', 'POST'])
 def success():
     VERIFICATION_TOKEN = request.args.get('VERIFICATION_TOKEN')
+    hospitalName = request.args.get('hospitalName')
+    review = request.args.get('review')
     if(VERIFICATION_TOKEN):
-        # Send the review to cohere
-        pass
+        #check genuinity of the review
+        response = co.classify(inputs=[review], model='996de6b6-76c2-411b-97b7-aa58f15e75ad-ft')
+        prediction=response.classifications[0].prediction
+        confidence=response.classifications[0].confidence[int(prediction)].confidence
+        genuinity='genuine' if int(prediction)==0 else 'fake'
+        #write the review to the database if it is genuine
+        if genuinity=='genuine':
+            newReview=Review(review=review,hospitalName=hospitalName)
+            DB.session.add(newReview)
+            DB.session.commit()
+        return render_template('success.html', txnid=VERIFICATION_TOKEN,result=genuinity)
+        #clear the file contents
+        # with open('../static/reviews.txt', 'w') as f:
+        #     f.write('')
     return render_template('success.html', result=VERIFICATION_TOKEN)
 
 

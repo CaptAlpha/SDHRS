@@ -7,17 +7,18 @@
     <title>Document</title>
     <link rel="stylesheet" href="../static/css/transaction.css" >
 </head>
+
 <body>
     <!-- navbar -->
     <div class="navbar">
         <p class="start">REVIEWGO</p>
         <div>
             <button class="end">LOGIN</button>
-    
+
             <button class="end">SIGNUP</button>
         </div>
-     
-    
+
+
     </div>
     <div class="form_container">
         
@@ -31,9 +32,14 @@
        <div class="myform">
         <form action="" method="POST">
             <div class="div1">
+                <label for=""><b>Hospital Name</b></label>
+               <br>
+               <input type="text" id="w3review" name="hospitalName" placeholder="Enter name" class="txt"></input>
+              </div>
+            <div class="div1">
               <label for=""><b>Review</b></label>
              <br>
-             <textarea id="w3review" name="w3review" rows="8" cols="50" placeholder="Enter review" class="txt"></textarea>
+             <textarea id="w3review" name="review" rows="8" cols="50" placeholder="Enter review" class="txt"></textarea>
             </div>
             <br>
             <div class="div1">
@@ -45,12 +51,12 @@
             <div class="div1">
             <label for="pp"><b>Algorand Pass Phrase</b></label>
             <br>
-            <input type="text" placeholder="Capture here" class="text">
+            <input type="text" placeholder="Capture here" class="text" name="pp">
             <br>
             </div>
              
            
-            <input type="submit" value="Create Transaction" class="submit"">
+            <input type="submit" value="Pay 1 Algo" class="submit"">
 
         </form>
       </div>
