@@ -5,6 +5,7 @@ import pandas as pd
 import cohere
 from cohere.classify import Example
 from db import DB, City, Hospital, Review, User
+from models.NLP.wordcloud1 import generate_wordcloud
 
 co = cohere.Client('xprvLYyVPF4XKxRqRUb1ADD9TiQ8ATDCKN6kuqVk')
 
@@ -18,7 +19,6 @@ app.config['SQLALCHEMY_DATABASE_URI']='sqlite:///hospitalReview.db'
 def index():
     if request.method == 'POST':
         hosp=request.form['hospitalName']
-        print(hosp)
         #get hospital city,speciality,reviews from the database
         hospital=Hospital.query.filter_by(name=hosp).first()
         city=City.query.filter_by(id=hospital.city_id).first()
@@ -32,6 +32,8 @@ def index():
         cityName=city.name
         #get the speciality
         speciality=hospital.speciality
+        #get the wordcloud
+        generate_wordcloud(reviewList)
         
         return render_template('details.html',hospitalName=hospitalName,cityName=cityName,speciality=speciality,reviewList=reviewList)
 
