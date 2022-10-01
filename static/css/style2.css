@@ -2,6 +2,7 @@ body {
     background-image: url(../images/bg2.svg);
     background-size: 70%;
     background-repeat: repeat-x;
+    font-family: 'Manrope', sans-serif;
     
 }
 .cont_c2b {
@@ -156,8 +157,7 @@ cursor: pointer;
     align-items: center;
     gap: 3vh;
     height: 40%;
-    /* position:sticky; */
-    
+    margin-bottom: 3vh;
 }
 .c2b {
     display: flex;
