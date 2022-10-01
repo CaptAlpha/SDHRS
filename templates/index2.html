@@ -55,43 +55,17 @@
                 </div>
                 <div class="dataset">
                     <p>World Cloud</p>
-                    <img src="../static/images/wordcloud1.png" alt="" class="cloud">
+                    <img src="../static/images/wordcloud.png" alt="" class="cloud">
                 </div>
             </div>
-            <!-- <div class="c2b">
-                <img src="../static/images/star-rating.png" alt="" class="ratig">
-                <p>{{reviewList}}</p>
-                <p>25.06.22</p>
-            </div>
-            <div class="c2c">
-                <img src="../static/images/star-rating.png" alt="" class="ratig">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum quisquam minus perspiciatis labore
-                    repellat at amet, doloremque natus, aliquam error distinctio nobis! Sint, ipsa quae sapiente earum
-                    ex quo eveniet?</p>
-                <p>25.06.22</p>
-            </div> -->
-            <div class="c2b">
-                <img src="../static/images/star-rating.png" alt="" class="ratig">
-                <p>{{reviewList}}</p>
-                <p>25.06.22</p>
-            </div>
 
-            <!-- get all reviews by splitting reviewList using \n -->
-
-            <!-- {% for review in reviewList.split("%3A") %}
-            <div class="c2b">
-                <img src="../static/images/star-rating.png" alt="" class="ratig">
-                <p>{{review}}</p>
-                <p>25.06.22</p>
-            </div>
-            {% endfor %} -->
-            <!-- <button class="clic">Show More</button> -->
-
-            <!-- <script>
+            <script>
                 // perform this when page loads
                 window.onload = function () {
                     // get all reviews by splitting reviewList using \n
-                    var reviewList = "{{reviewList}}".split("\n");
+                    console.log(reviewList);
+                    var reviewList = "{{reviewList}}".split("||");
+                    console.log(reviewList[0]);
                     // get container2
                     var container2 = document.getElementsByClassName("container2")[0];
                     // loop through all reviews
@@ -122,7 +96,7 @@
                         container2.appendChild(div);
                     }
                 }
-            </script> -->
+            </script>
 
 
         </div>

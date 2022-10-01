@@ -33,6 +33,7 @@ class Review(DB.Model):
     hospital_id=DB.Column(DB.Integer,DB.ForeignKey('hospital.id'),nullable=False)
     review=DB.Column(DB.String(100),nullable=False)
     date_created=DB.Column(DB.VARCHAR(10))
+    rating=DB.Column(DB.Numeric,nullable=True,default=4)
 
     def __repr__(self):
         return '<Review %r>' % self.id
