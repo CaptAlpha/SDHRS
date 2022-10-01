@@ -3,3 +3,4 @@ body {
     background-size: 70%;
     background-repeat: repeat-x;
 }
+textarea, input { outline: none; }

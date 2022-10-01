@@ -4,6 +4,7 @@ body {
     background-repeat: repeat-x;
     
 }
+textarea, input { outline: none; }
 .navbar {
     display: flex;
     justify-content:space-around;

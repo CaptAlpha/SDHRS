@@ -10,7 +10,7 @@ body{
     font-family: 'Poppins', sans-serif;
     margin-bottom:4%;
 }
-
+textarea, input { outline: none; }
 .start {
     font-family: 'Manrope', sans-serif;
     font-size: 20px;

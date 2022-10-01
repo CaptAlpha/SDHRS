@@ -4,6 +4,7 @@ body {
     background-repeat: repeat-x;
     
 }
+textarea, input { outline: none; }
 .h4 {
     font-family: 'Poppins', sans-serif;
 }
