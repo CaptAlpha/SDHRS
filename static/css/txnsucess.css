@@ -5,16 +5,10 @@ body {
     font-family: 'Manrope', sans-serif;
 }
 textarea, input { outline: none; }
-.navbar {
-    display: flex;
-    justify-content:space-around;
-    font-size: 25px;
-    font-weight: 400;
-    margin-bottom: 3vh;
-    font-family: 'Manrope', sans-serif;
-    margin-bottom:4%;
+.logo {
+    margin-left: 5vh;
+    width: 15%;
 }
-
 .start {
     font-family: 'Manrope', sans-serif;
     font-size: 20px;
