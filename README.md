@@ -101,6 +101,8 @@ Here's why:
 
 * We try to bring in features such as advanced data analysis, data visualization from the scraped data using various graphs and models.
 
+<img src="static/images/reviewsystem.png" alt="Logo" >
+
 
 ### Built With
 
