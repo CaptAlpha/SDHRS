@@ -141,6 +141,8 @@ cursor: pointer;
     border-color: #477bf7;
     border-radius: 5px;
     margin-left: -8vh;
+    overflow-y: scroll;
+    height: 50%;
 }
 .c2a {
     display: flex;
