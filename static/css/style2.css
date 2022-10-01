@@ -156,7 +156,7 @@ cursor: pointer;
     align-items: center;
     gap: 3vh;
     height: 40%;
-    position:sticky;
+    /* position:sticky; */
     
 }
 .c2b {
