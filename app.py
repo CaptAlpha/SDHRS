@@ -19,6 +19,9 @@ DB.init_app(app)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 app.config['SQLALCHEMY_DATABASE_URI']='sqlite:///hospitalReview.db'
 
+#SQLALCHEMY_TRACK_MODIFICATIONS = False
+
+
 VERIFICATION_TOKEN = ''
 
 @app.route('/', methods=['GET', 'POST'])
@@ -29,10 +32,18 @@ def index():
         hospital=Hospital.query.filter_by(name=hosp).first()
         city=City.query.filter_by(id=hospital.city_id).first()
         reviews=Review.query.filter_by(hospital_id=hospital.id).all()
+
         #get the reviews and put them in a list
         reviewList=[]
+        ratingList=[]
+        dateList=[]
         for review in reviews:
             reviewList.append(review.review)
+            ratingList.append(float(review.rating))
+            dateList.append(review.date_created)
+        print(ratingList)
+        avgRating=sum(ratingList)/len(ratingList)
+        avgRating=round(avgRating,2)
         #get the hospital name and city
         hospitalName=hospital.name
         cityName=city.name
@@ -41,49 +52,24 @@ def index():
         #get the wordcloud
         generate_wordcloud(reviewList)
 
-        print(reviewList)
-        #join the reviews by \n
-        # reviewString='\n'.join(reviewList)
+        #convert ratings to str
+        for i in range(len(ratingList)):
+            ratingList[i]=str(ratingList[i])
+    
+        # join the reviews by \n
+        reviewString='||'.join(reviewList)
+        ratingString='||'.join(ratingList)
+        dateString='||'.join(dateList)
         #redirect to transaction route
-        return redirect(url_for('addReview', hospitalName=hospitalName, cityName=cityName, speciality=speciality,reviewList=reviewList))
-        
-        # return render_template('details.html',hospitalName=hospitalName,cityName=cityName,speciality=speciality,reviewList=reviewList)
+        return redirect(url_for('addReview', hospitalName=hospitalName, cityName=cityName, speciality=speciality,reviewList=reviewString,avgRating=avgRating, ratingList=ratingString, dateList=dateString))
 
     return render_template('index.html')
-
-
-# @app.route('/classify', methods=['GET', 'POST'])
-# def classify():
-#     if request.method == 'POST':
-#         review = request.form['review']
-#         response = co.classify(inputs=[review], model='996de6b6-76c2-411b-97b7-aa58f15e75ad-ft')
-#         prediction=response.classifications[0].prediction
-#         confidence=response.classifications[0].confidence[int(prediction)].confidence
-#         genuinity='genuine' if int(prediction)==0 else 'fake'
-#         return render_template('index.html', result='Your review is {:0.2f}% {}'.format(confidence*100, genuinity))
-
-#     return render_template('index.html')
-
-# @app.route('/addReview', methods=['GET', 'POST'])
-# def addReview():
-#     if request.method == 'POST':
-#         review = request.form['review']
-#         hospitalName = request.form['hospitalName']
-#         #get the hospital id
-#         hospital=Hospital.query.filter_by(name=hospitalName).first()
-#         hospitalId=hospital.id
-#         #write hospitalID and review to a file
-#         with open('../static/reviews.txt', 'a') as f:
-#             f.write(hospitalId+' '+review+'\n')
-        
-#         return redirect(url_for('index'))
-#     return render_template('addReview.html')
 
 @app.route('/addReview', methods=['GET', 'POST'])
 def addReview():
     if request.method=='POST':
-        return redirect(url_for('transaction'))
-    return render_template('index2.html', hospitalName=request.args.get('hospitalName'), cityName=request.args.get('cityName'), speciality=request.args.get('speciality'), reviewList=request.args.get('reviewList'))
+        return redirect(url_for('txn'))
+    return render_template('index2.html', hospitalName=request.args.get('hospitalName'), cityName=request.args.get('cityName'), speciality=request.args.get('speciality'), reviewList=request.args.get('reviewList'),ratingList=request.args.get('ratingList'),avgRating=request.args.get('avgRating'),dateList=request.args.get('dateList'))
     
 
 @app.route('/transaction', methods=['GET', 'POST'])
@@ -92,13 +78,6 @@ def txn():
         review = request.form['review']
         pp = request.form['pp']
         hospitalName = request.form['hospitalName']
-        #get the hospital id
-        # hospital=Hospital.query.filter_by(name=hospitalName).first()
-        # hospitalId=hospital.id
-        #write hospitalID and review to a file
-        # with open('static/reviews.txt', 'w+') as f:
-        #     f.write(str(hospitalId)+' '+review+'\n')
-
         algod_address = "https://testnet-algorand.api.purestake.io/ps2"
         algod_token = ""
         headers = {
@@ -133,7 +112,6 @@ def txn():
             print("Transaction sent, transaction ID: {}".format(txid))
             txnStr = str('Transaction Successful with TransactionID: {}'.format(txid))
             VERIFICATION_TOKEN = txid
-            # return redirect(url_for('success', result=txnStr, VERIFICATION_TOKEN=VERIFICATION_TOKEN, hospitalName=hospitalName, review=review))
         else:
             print("Transaction Failed")
             txnStr = str('Transaction Failed')
@@ -156,13 +134,13 @@ def success():
         genuinity='genuine' if int(prediction)==0 else 'fake'
         #write the review to the database if it is genuine
         if genuinity=='genuine':
-            newReview=Review(review=review,hospitalName=hospitalName)
+            #get id from hospital name
+            hospital=Hospital.query.filter_by(name=hospitalName).first()
+            id=hospital.id
+            newReview=Review(name='Anonymous',review=review,hospital_id=id,date_created='01/10/22')
             DB.session.add(newReview)
             DB.session.commit()
         return render_template('success.html', txnid=VERIFICATION_TOKEN,result=genuinity)
-        #clear the file contents
-        # with open('../static/reviews.txt', 'w') as f:
-        #     f.write('')
     return render_template('success.html', result=VERIFICATION_TOKEN)
 
 

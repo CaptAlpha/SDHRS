@@ -39,7 +39,8 @@
             <div class="hosteldetails">
                 <div class="heading">
                     <h4>{{hospitalName}}</h4>
-                    <img src="../static/images/Group 237464.svg" alt="" class="star">
+                    <h4>⭐{{avgRating}}</h4>
+                    <!-- <img src="../static/images/Group 237464.svg" alt="" class="star"> -->
                 </div>
                 <div class="info">
                     <p><img src="../static/images/location.png" alt="" class="a">{{cityName}}</p>
@@ -49,91 +50,64 @@
         </div>
         <div class="container2">
             <div class="c2a">
-                <div class="review"><img src="../static/images/avg.png" alt="" class="c">
+                <!-- <div class="review"><img src="../static/images/avg.png" alt="" class="c"> -->
+                <div class="review">
+                    <div class="rating">{{avgRating}}</div>
                     <p>AVERAGE RATING<br>
-                        <p>25 verified review</p>
+                        <p>{{reviewList.split('||')|length}} verified review</p>
                 </div>
                 <div class="dataset">
                     <p>World Cloud</p>
-                    <img src="../static/images/wordcloud1.png" alt="" class="cloud">
+                    <img src="../static/images/wordcloud.png" alt="" class="cloud">
                 </div>
             </div>
-            
-            <div class="c2b">
-                <img src="../static/images/star-rating.png" alt="" class="ratig">
-                <p>{{reviewList}}</p>
-                <p>25.06.22</p>
-            </div>
-            <div class="c2c">
-                <img src="../static/images/star-rating.png" alt="" class="ratig">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum quisquam minus perspiciatis labore
-                    repellat at amet, doloremque natus, aliquam error distinctio nobis! Sint, ipsa quae sapiente earum
-                    ex quo eveniet?</p>
-                <p>2<5.06.22</p>
-            </div> 
-            <div class="c2c">
-                <img src="../static/images/star-rating.png" alt="" class="ratig">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum quisquam minus perspiciatis labore
-                    repellat at amet, doloremque natus, aliquam error distinctio nobis! Sint, ipsa quae sapiente earum
-                    ex quo eveniet?</p>
-                <p>2<5.06.22</p>
-            </div> 
-            <div class="c2c">
-                <img src="../static/images/star-rating.png" alt="" class="ratig">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum quisquam minus perspiciatis labore
-                    repellat at amet, doloremque natus, aliquam error distinctio nobis! Sint, ipsa quae sapiente earum
-                    ex quo eveniet?</p>
-                <p>2<5.06.22</p>
-            </div> 
-        
 
-            <!-- get all reviews by splitting reviewList using \n -->
+            <div class="cont_c2b">
+                <script>
+                    // perform this when page loads
+                    window.onload = function () {
+                        var reviewList = "{{reviewList}}".split("||");
+                        var ratingList = "{{ratingList}}".split("||");
+                        var dateList = "{{dateList}}".split("||");
+                        // get container2
+                        var container2 = document.getElementsByClassName("container2")[0];
+                        // loop through all reviews
+                        for (var i = 0; i < reviewList.length; i++) {
+                            // create div
+                            var div = document.createElement("div");
+                            // add class
+                            div.classList.add("c2b");
+                            // add star ratings using ratingList
+                            var rating = document.createElement("div");
+                            // rating.classList.add("rating");
+                            for (var j = 0; j < ratingList[i]; j++) {
+                                var img = document.createElement("img");
+                                img.src = "../static/images/star-rating.png";
+                                img.alt = "";
+                                // img.classList.add("star");
+                                rating.appendChild(img);
+                            }
+                            div.appendChild(rating);
 
-            <!-- {% for review in reviewList.split("%3A") %}
-            <div class="c2b">
-                <img src="../static/images/star-rating.png" alt="" class="ratig">
-                <p>{{review}}</p>
-                <p>25.06.22</p>
-            </div>
-            {% endfor %} -->
-            <!-- <button class="clic">Show More</button> -->
+                            // create p
+                            var p = document.createElement("p");
+                            // add text
+                            p.innerText = reviewList[i];
+                            // create p
+                            var p2 = document.createElement("p");
+                            // add text
+                            p2.innerText = dateList[i];
+                            // append img, p, p2 to div
+                            // div.appendChild(img);
 
-            <!-- <script>
-                // perform this when page loads
-                window.onload = function () {
-                    // get all reviews by splitting reviewList using \n
-                    var reviewList = "{{reviewList}}".split("\n");
-                    // get container2
-                    var container2 = document.getElementsByClassName("container2")[0];
-                    // loop through all reviews
-                    for (var i = 0; i < reviewList.length; i++) {
-                        // create div
-                        var div = document.createElement("div");
-                        // add class
-                        div.classList.add("c2b");
-                        // create img
-                        var img = document.createElement("img");
-                        // add src
-                        img.src = "../static/images/star-rating.png";
-                        // add class
-                        img.classList.add("ratig");
-                        // create p
-                        var p = document.createElement("p");
-                        // add text
-                        p.innerText = reviewList[i];
-                        // create p
-                        var p2 = document.createElement("p");
-                        // add text
-                        p2.innerText = "25.06.22";
-                        // append img, p, p2 to div
-                        div.appendChild(img);
-                        div.appendChild(p);
-                        div.appendChild(p2);
-                        // append div to container2
-                        container2.appendChild(div);
+                            div.appendChild(p);
+                            div.appendChild(p2);
+                            // append div to container2
+                            container2.appendChild(div);
+                        }
                     }
-                }
-            </script> -->
+                </script>
+            </div>
 
 
         </div>
