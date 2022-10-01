@@ -3,6 +3,11 @@ from flask import render_template
 from flask import request, redirect, url_for
 import pandas as pd
 import cohere
+import json
+from algosdk.v2client import algod
+from algosdk import account, mnemonic, kmd
+from algosdk.future import transaction
+from algosdk.future.transaction import AssetConfigTxn, AssetTransferTxn, AssetFreezeTxn
 from cohere.classify import Example
 from db import DB, City, Hospital, Review, User
 
@@ -68,8 +73,56 @@ def transaction():
         pk = request.form['pk']
         sk = request.form['sk']
         pp = request.form['pp']
-        print(pk,sk,pp)
-        print('*************************************************')
+
+        algod_address = "https://testnet-algorand.api.purestake.io/ps2"
+        algod_token = ""
+        headers = {
+            "X-API-Key": "LznYKjBylk53uEV5UDlN57lolkR64tnr1VHwsM19",
+        }
+
+        # Initialize an algod client
+        algod_client = algod.AlgodClient(algod_token, algod_address, headers)
+
+        # Recover the account from the private key
+        account = mnemonic.to_public_key(sk)
+        print("My address: {}".format(account))
+
+        # Get the node suggested parameters
+        params = algod_client.suggested_params()
+        # comment out the next two (2) lines to use suggested fees
+        params.flat_fee = True
+        params.fee = 1000
+
+        # Create the asset
+        txn = AssetConfigTxn(
+            sender=account,
+            sp=params,
+            total=1000000,
+            default_frozen=False,
+            unit_name="LATOKEN",
+            asset_name="LATOKEN",
+            url="https://www.latoken.com/",
+            metadata_hash=bytes(
+                "16efaa3924a6fd9d3a4824799a4ac65d", encoding="utf-8"
+            ),
+        )
+
+        # Sign the transaction
+        signed_txn = txn.sign(sk)
+
+        # Submit the transaction
+        txid = algod_client.send_transaction(signed_txn)
+        print("Transaction ID: {}".format(txid))
+
+        # Wait for the transaction to be confirmed
+        wait_for_confirmation(algod_client, txid)
+
+        # Get the new asset's information from the creator account
+        account_info = algod_client.account_info(account)
+        print(json.dumps(account_info, indent=4))
+        return render_template('index.html')
+
+
 
 
     return render_template('transaction.html')
