@@ -1,5 +1,7 @@
 from wordcloud import WordCloud, STOPWORDS
-from matplotlib import pyplot as plt
+import matplotlib
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
 # Create and generate a word cloud image:
 def generate_wordcloud(string_list):
     string_s = " ".join(string_list)

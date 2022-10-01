@@ -1,5 +1,4 @@
 from flask import Flask,render_template,request,redirect,url_for
-import cv2
 import subprocess as sp
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime

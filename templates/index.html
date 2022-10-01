@@ -2,12 +2,12 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../static/css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;400;500&display=swap" rel="stylesheet">
-    <title>REAL REVIEW</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../static/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;400;500&display=swap" rel="stylesheet">
+  <title>REAL REVIEW</title>
 </head>
 
 
@@ -19,15 +19,15 @@
 <!-- images -->
 
 <div class="part1">
-    <img src="../static/images/One Step Solution for verified Hospital reviews..png" alt="" class="text-img">
+  <img src="../static/images/One Step Solution for verified Hospital reviews..png" alt="" class="text-img">
 
 
-    <div class="doc_photos">
-        <img src="../static/images/trafalgar-illustration sec03 1.png" alt="" class="doctor">
-    </div>
+  <div class="doc_photos">
+    <img src="../static/images/trafalgar-illustration sec03 1.png" alt="" class="doctor">
+  </div>
 </div>
 <p class="p1">Using AI where we verify whether the review is
-    genuine <br>or fake</p>
+  genuine <br>or fake</p>
 <!-- main cities -->
 <!-- 
         <div class="images">
@@ -162,56 +162,58 @@
 
 <!-- search area -->
 <form action="" class="searchform">
-    <input type="text" placeholder="Search your hospital" name="search" class="all">
-    <button type="submit" class="searchbar"><img src="../static/images/search-bar.svg" alt=""
-            class="buttonimage"></button>
+  <input type="text" placeholder="Search your hospital" name="search" class="all">
+  <button type="submit" class="searchbar"><img src="../static/images/search-bar.svg" alt=""
+      class="buttonimage"></button>
 </form>
 <!-- cards -->
-
 <div class="card">
-    <div class="card1">
-        <img src="../static/images/kisspng-physician-diabetes-mellitus-computer-disease-preve-doctor-and-computer-5a99b82dcadc58 1.png"
-            alt="img1" class="card_img">
-        <div class="baby_card">
-            <div class="card_info">
-                <form action="" method="POST">
-                    <input type="submit" class="hospitalName" value="CMC" name="hospitalName">
-                </form>
-                <img src="../static/images/Group 237464.svg" alt="" class="star">
-            </div>
-            <p>VELLORE</p>
-            <p>HEART</p>
-        </div>
+  <div class="card1">
+    <img
+      src="../static/images/kisspng-physician-diabetes-mellitus-computer-disease-preve-doctor-and-computer-5a99b82dcadc58 1.png"
+      alt="img1" class="card_img">
+    <div class="baby_card">
+      <div class="card_info">
+        <form action="" method="POST">
+          <input type="submit" class="hospitalName" value="{{hospital_names[0]}}" name="hospitalName">
+        </form>
+        <img src="../static/images/Group 237464.svg" alt="" class="star">
+      </div>
+      <p>{{cities[0]}}</p>
+      <p>{{specialities[0]}}</p>
     </div>
-    <div class="card1">
-        <img src="../static/images/kisspng-physician-diabetes-mellitus-computer-disease-preve-doctor-and-computer-5a99b82dcadc58 1.png"
-            alt="img1" class="card_img">
-        <div>
-            <div class="card_info">
-                <form action="" method="POST">
-                    <input type="submit" class="hospitalName" value="Chettinad" name="hospitalName">
-                </form>
-                <img src="../static/images/Group 237464.svg" alt="" class="star">
-            </div>
-            <p>VELLORE</p>
-            <p>HEART</p>
-        </div>
+  </div>
+  <div class="card1">
+    <img
+      src="../static/images/kisspng-physician-diabetes-mellitus-computer-disease-preve-doctor-and-computer-5a99b82dcadc58 1.png"
+      alt="img1" class="card_img">
+    <div>
+      <div class="card_info">
+        <form action="" method="POST">
+          <input type="submit" class="hospitalName" value="{{hospital_names[1]}}" name="hospitalName">
+        </form>
+        <img src="../static/images/Group 237464.svg" alt="" class="star">
+      </div>
+      <p>{{cities[1]}}</p>
+      <p>{{specialities[1]}}</p>
     </div>
-    <div class="card1">
-        <img src="../static/images/kisspng-physician-diabetes-mellitus-computer-disease-preve-doctor-and-computer-5a99b82dcadc58 1.png"
-            alt="img1" class="card_img">
-        <div>
-            <div class="card_info">
-                <form action="" method="POST">
-                    <input type="submit" class="hospitalName" value="Apollo" name="hospitalName">
-                </form>
-                <img src="../static/images/Group 237464.svg" alt="" class="star">
-            </div>
-            <p>VELLORE</p>
-            <p>HEART</p>
-        </div>
+  </div>
+  <div class="card1">
+    <img
+      src="../static/images/kisspng-physician-diabetes-mellitus-computer-disease-preve-doctor-and-computer-5a99b82dcadc58 1.png"
+      alt="img1" class="card_img">
+    <div>
+      <div class="card_info">
+        <form action="" method="POST">
+          <input type="submit" class="hospitalName" value="{{hospital_names[2]}}" name="hospitalName">
+        </form>
+        <img src="../static/images/Group 237464.svg" alt="" class="star">
+      </div>
+      <p>{{cities[2]}}</p>
+      <p>{{specialities[2]}}</p>
     </div>
-    <!-- <div class="card1">
+  </div>
+  <!-- <div class="card1">
         <img src="../static/images/kisspng-physician-diabetes-mellitus-computer-disease-preve-doctor-and-computer-5a99b82dcadc58 1.png"
             alt="img1" class="card_img">
         <div>
