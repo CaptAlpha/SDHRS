@@ -16,7 +16,7 @@ headers = {
 algod_client = algod.AlgodClient(algod_token, algod_address, headers)
 
 # Add your account mnemonics here
-mnemonic1 = "cargo blush ocean cluster divert spider bunker gain excite shop jeans romance buzz loan potato stick people receive cross cheese unfair alter wild ability drop"
+mnemonic1 = "cargo blush ocean cluster divert spider bunker      gain excite shop jeans romance buzz loan potato stick people receive cross cheese unfair alter wild ability drop"
 mnemonic2 = "jaguar purchase gate lamp vanish because rubber open lecture vessel tree year sand hammer news almost nephew arena pen equal victory easy genuine about buffalo"
 mnemonic3 = "keep light odor hole step fresh lawsuit inquiry panda attend taste remember wire stairs what village volcano filter boat electric hello fence antenna able crystal"
 
