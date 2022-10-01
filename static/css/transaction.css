@@ -1,0 +1,119 @@
+body {
+    background-image: url(../images/bg2.svg);
+    background-size: 70%;
+    background-repeat: repeat-x;
+    
+}
+.navbar {
+    display: flex;
+    justify-content:space-around;
+    font-size: 25px;
+    font-weight: 400;
+    margin-bottom: 3vh;
+    font-family: 'Poppins', sans-serif;
+    margin-bottom:4%;
+}
+
+.start {
+    font-family: 'Manrope', sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+}
+.end {
+background: linear-gradient(96.14deg, #3A8EF6 -10.84%, #6F3AFA 196.74%);
+border-radius: 17.0492px;
+height: 6vh;
+width: 10vw;
+border: transparent;
+margin-left: 6vh;
+margin-top: 3vh;
+font-weight: bold;
+font-family: 'Poppins', sans-serif;
+color: white;
+cursor: pointer;
+}
+.form_container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+
+}
+.container3 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-left: -2%;
+    
+}
+.bt2 {
+    width: 8vw;
+    height: 6vh;
+    background: linear-gradient(96.14deg, #3A8EF6 -10.84%, #6F3AFA 196.74%);
+    box-shadow: 1.23333px 3.7px 2.46667px rgba(145, 139, 139, 0.4);
+    border-radius: 30.8333px;
+    font-size: 8px;
+    margin-left: -35vw;
+    border-color: transparent;
+}
+.back {
+    margin-bottom: 5vh;
+    font-size: 1.5vw;
+    margin-left: 1vw;
+    color: white;
+    cursor: pointer;
+    padding-bottom  : 2px;
+}
+.arr {
+    margin-top: 2px;
+    width: 1vw;
+}
+.pcimg {
+    width: 70%;
+    margin-top:15vh;
+}
+.myform {
+    border: solid;
+    border-color: #4281F7;
+    border-radius: 10px;
+    margin-top: -5vh;
+    margin-left: -24%;
+    padding: 2.5vh;
+    background-color: #F3F5F6;
+}
+.div1 {
+    background-color: white;
+    padding:10px;
+    border-radius: 6px;
+}
+.txt {
+    background-color:#EAF0F7;
+    margin-top: 2vh;
+    border-radius: 10px;
+    border-color: transparent;
+    width:40vw;
+}
+.text {
+    border: solid;
+    background-color:#EAF0F7;
+    margin-top: 5vh;
+    width:40vw;
+    height: 5vh;
+    border-color: transparent;
+    border-radius: 8px;
+}
+.submit {
+background: linear-gradient(96.14deg, #3A8EF6 -10.84%, #6F3AFA 196.74%);
+border-radius: 17.0492px;
+height: 6vh;
+width: 10vw;
+border: transparent;
+margin-left: 6vh;
+margin-top: 3vh;
+font-weight: bold;
+font-family: 'Poppins', sans-serif;
+color: white;
+margin-left: 60vh;
+cursor: pointer;
+}

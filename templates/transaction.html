@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../static/css/style2.css" >
+    <link rel="stylesheet" href="../static/css/transaction.css" >
 </head>
 <body>
     <!-- navbar -->
@@ -19,23 +19,41 @@
      
     
     </div>
-       
-    <button>
-        Back
-    </button>
+    <div class="form_container">
+        
+        <div class="container3">
+            <button class="bt2"><img src="../static/images/Arrow.png" alt="" class="arr"><span class="back">Back</span></button>
+          <div>
+            <img src="../static/images/cmpimg.png" alt="" class="pcimg">
+          </div>
+       </div>
 
-    <div class="myform">
+       <div class="myform">
         <form action="" method="POST">
-            <label for="">Review</label>
-            <input type="text">
-            <label for="">Rating</label>
-            <input type="range" name="" id="">
-            <label for="pp">Pass Phrase</label>
-            <input type="text">
-
-            <input type="submit" value="">
+            <div class="div1">
+              <label for=""><b>Review</b></label>
+             <br>
+             <textarea id="w3review" name="w3review" rows="8" cols="50" placeholder="Enter review" class="txt"></textarea>
+            </div>
+            <br>
+            <div class="div1">
+             <label for=""><b>Rating</b></label>
+            <br>
+              <input type="range" name="" id="">
+            </div>
+            <br>
+            <div class="div1">
+            <label for="pp"><b>Algorand Pass Phrase</b></label>
+            <br>
+            <input type="text" placeholder="Capture here" class="text">
+            <br>
+            </div>
+             
+           
+            <input type="submit" value="Create Transaction" class="submit"">
 
         </form>
+      </div>
     </div>
 
     </div>

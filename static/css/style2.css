@@ -33,6 +33,7 @@ margin-top: 3vh;
 font-weight: bold;
 font-family: 'Poppins', sans-serif;
 color: white;
+cursor: pointer;
 }
 .bt {
     margin-bottom: 3vh;
@@ -201,7 +202,8 @@ color: white;
     border-color: transparent;
     border-radius: 5px;
     color:white;
-    font-family:'Poppins', sans-serif;;
+    font-family:'Poppins', sans-serif;
+    cursor: pointer;
 }
 
 .cloud {
