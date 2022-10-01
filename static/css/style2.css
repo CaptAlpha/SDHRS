@@ -4,6 +4,10 @@ body {
     background-repeat: repeat-x;
     
 }
+.cont_c2b {
+    /*Fix the height*/
+    height: 30px;
+}
 textarea, input { outline: none; }
 .h4 {
     font-family: 'Poppins', sans-serif;
@@ -133,6 +137,7 @@ cursor: pointer;
     display: flex;
     flex-direction:column;
     gap: 1vh;
+    height: 530px;
     justify-content: center;
     align-items: center;
     background-color: #F3F3F6;
@@ -141,6 +146,8 @@ cursor: pointer;
     border-color: #477bf7;
     border-radius: 5px;
     margin-left: -8vh;
+    padding: 2vh;   
+    overflow-y: scroll;
 }
 .c2a {
     display: flex;
