@@ -50,6 +50,30 @@ def classify():
 
     return render_template('index.html')
 
+@app.route('/addReview', methods=['GET', 'POST'])
+def addReview():
+    if request.method == 'POST':
+        review = request.form['review']
+        hospitalName = request.form['hospitalName']
+        hospital=Hospital.query.filter_by(name=hospitalName).first()
+        review=Review(review=review,hospital_id=hospital.id)
+        DB.session.add(review)
+        DB.session.commit()
+        return redirect(url_for('index'))
+    return render_template('addReview.html')
+
+@app.route('/transaction', methods=['GET', 'POST'])
+def transaction():
+    if request.method == 'POST':
+        pk = request.form['pk']
+        sk = request.form['sk']
+        pp = request.form['pp']
+        print(pk,sk,pp)
+        print('*************************************************')
+
+
+    return render_template('transaction.html')
+
 if __name__ == '__main__':
     app.run(debug=True)
 
