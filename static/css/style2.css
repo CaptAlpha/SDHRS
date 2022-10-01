@@ -56,21 +56,31 @@ color: white;
 .arr {
     width: 15%;
 }
-.back {
+.revi {
     margin-bottom: 3vh;
     font-size: 1.5vw;
     margin-left: 1vw;
     color: white;
 
 }
+.back {
+    margin-bottom: 3vh;
+    font-size: 1.5vw;
+    margin-left: 1vw;
+    color: white;
+}
+
 .review {
     margin-bottom: 2vh;
     font-size: 1.5vw;
     color: white;
+    width: 40%;
+    background-color: white;
+    padding: 6vh;
     
 }
 .hospitalimg {
-    width: 50%;
+    width: 70%;
     height: 50%;
 }
 
@@ -82,18 +92,21 @@ color: white;
 }
 .star {
     margin-top: -1vh;
-    width:15%;
+    width:20%;
 
 }
 .hosteldetails{
     width: 50%;
     height: 50%;
 }
-.container  {
+.container {
     display: flex;
     flex-direction: row;
     margin-left: 7vw;
+    align-items: center;
+    
 }
+
 .info {
     display: flex;
     flex-direction: row;
@@ -107,4 +120,83 @@ color: white;
 .a {
     width: 10%;
     margin-right: 0.5vw;
+}
+.container2 {
+    display: flex;
+    flex-direction:column;
+    gap: 1vh;
+    justify-content: center;
+    align-items: center;
+    background-color: #F3F3F6;
+    width: 50%;
+    border: solid;
+    border-color: #477bf7;
+    border-radius: 5px;
+    margin-left: -8vh;
+}
+.c2a {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  
+    gap: 3vh;
+    
+}
+.c2b {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    border: solid;
+    border-color: transparent;
+    border-radius: 5px;
+    width: 90%;
+    background-color: white;
+    font-size: 15px;
+    height: fit-content;
+}
+.c2c {
+    
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        border: solid;
+        border-color: transparent;
+        border-radius: 5px;
+        width: 90%;
+        background-color: white;
+        font-size: 15px;
+        height: fit-content;
+        
+    
+}
+.c2b p {
+    margin-top: 1vh;
+}
+.c2c p {
+    margin-top: 1vh;
+}
+.dataset {
+    display: flex;
+    flex-direction: column;
+    width:60%;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+}
+
+.clic {
+    width: 90%;
+    height: 5vh;
+    background-color: #3A8EF6;
+    margin-bottom: 3vh;
+    border: solid;
+    border-color: transparent;
+    border-radius: 5px;
+    color:white;
+    font-family:'Poppins', sans-serif;;
+}
+
+.cloud {
+    width: 80%;
 }
