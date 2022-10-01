@@ -18,7 +18,7 @@
 *** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
 *** https://www.markdownguide.org/basic-syntax/#reference-style-links
 -->
-[![Contributors][contributors-shield]][contributors-url]
+<!-- [![Contributors][contributors-shield]][contributors-url] -->
 [![MIT License][license-shield]][license-url]
 
 
@@ -27,7 +27,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/CaptAlpha/SDHRS">
-    <img src="static/images/logo1.png" alt="Logo" width="80" height="80">
+    <img src="static/images/logo1.png" alt="Logo" width="300" height="80">
   </a>
 
   <h3 align="center">Hospitalify.US</h3>
@@ -79,7 +79,8 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+  <img src="static/images/landing.png" alt="Logo" >
+
 
 On the internet, we are able to discover evaluations and ratings of a variety of hospitals; however, this material is quite unstructured, and it is not possible to trust it because it is derived from open forum conversations. These reviews have a high propensity to be either biassed or fraudulent most of the time.
 
@@ -170,7 +171,10 @@ _Below are the steps to run the file
 Navigate through the web interface to interact with the application.
 
 _For more examples, please refer to the [Documentation](https://example.com)_
-
+<img src="static/images/landing.png" alt="Logo" >
+<img src="static/images/reviews.png" alt="Logo" >
+<img src="static/images/trans.png" alt="Logo" >
+<img src="static/images/verification.png" alt="Logo" >
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
