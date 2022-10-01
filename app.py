@@ -19,6 +19,7 @@ DB.init_app(app)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 app.config['SQLALCHEMY_DATABASE_URI']='sqlite:///hospitalReview.db'
 
+VERIFICATION_TOKEN = ''
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
@@ -70,10 +71,8 @@ def addReview():
     return render_template('addReview.html')
 
 @app.route('/transaction', methods=['GET', 'POST'])
-def transaction():
+def txn():
     if request.method == 'POST':
-        pk = request.form['pk']
-        sk = request.form['sk']
         pp = request.form['pp']
 
         algod_address = "https://testnet-algorand.api.purestake.io/ps2"
@@ -82,52 +81,53 @@ def transaction():
             "X-API-Key": "LznYKjBylk53uEV5UDlN57lolkR64tnr1VHwsM19",
         }
 
+        # my_wallet
+        my_address = 'QZ4JHEU6QEXZCB52W7ABKLOXNSH6PBOSFNU4VVJNYNCIRVAP6UWLB3IQMU'
+        my_passphrase = 'cargo blush ocean cluster divert spider bunker gain excite shop jeans romance buzz loan potato stick people receive cross cheese unfair alter wild ability drop'
+        
+        # Client Wallet 
+        client_pp = pp
+        client_address = mnemonic.to_public_key(client_pp)
+        print("Client address: {}".format(client_address))
+        client_SK = mnemonic.to_private_key(client_pp)
+        print("Client private key: {}".format(client_SK))
+
         # Initialize an algod client
         algod_client = algod.AlgodClient(algod_token, algod_address, headers)
 
-        # Recover the account from the private key
-        account = mnemonic.to_public_key(sk)
-        print("My address: {}".format(account))
-
-        # Get the node suggested parameters
+        # Get the relevant params from the algod    
         params = algod_client.suggested_params()
-        # comment out the next two (2) lines to use suggested fees
         params.flat_fee = True
         params.fee = 1000
+        send_amount = 10000
 
-        # Create the asset
-        txn = AssetConfigTxn(
-            sender=account,
-            sp=params,
-            total=1000000,
-            default_frozen=False,
-            unit_name="LATOKEN",
-            asset_name="LATOKEN",
-            url="https://www.latoken.com/",
-            metadata_hash=bytes(
-                "16efaa3924a6fd9d3a4824799a4ac65d", encoding="utf-8"
-            ),
-        )
-
-        # Sign the transaction
-        signed_txn = txn.sign(sk)
-
-        # Submit the transaction
+        txn = transaction.PaymentTxn(client_address, params, my_address, send_amount)
+        signed_txn = txn.sign(client_SK)
+        
         txid = algod_client.send_transaction(signed_txn)
-        print("Transaction ID: {}".format(txid))
-
-        # Wait for the transaction to be confirmed
-        wait_for_confirmation(algod_client, txid)
-
-        # Get the new asset's information from the creator account
-        account_info = algod_client.account_info(account)
-        print(json.dumps(account_info, indent=4))
-        return render_template('index.html')
-
-
-
+        if(txid):
+            # print("Transaction sent, transaction ID: {}".format(txid))
+            txnStr = str('Transaction Successful with TransactionID: {}'.format(txid))
+            VERIFICATION_TOKEN = txid
+            return redirect(url_for('success', result=txnStr, VERIFICATION_TOKEN=VERIFICATION_TOKEN))
+        else:
+            print("Transaction Failed")
+            txnStr = str('Transaction Failed')
+        return render_template('success.html', result=txnStr, VERIFICATION_TOKEN=VERIFICATION_TOKEN)
+        
 
     return render_template('transaction.html')
+
+print(VERIFICATION_TOKEN)
+#Successful transaction page
+@app.route('/success', methods=['GET', 'POST'])
+def success():
+    VERIFICATION_TOKEN = request.args.get('VERIFICATION_TOKEN')
+    if(VERIFICATION_TOKEN):
+        # Send the review to cohere
+        pass
+    return render_template('success.html', result=VERIFICATION_TOKEN)
+
 
 if __name__ == '__main__':
     app.run(debug=True)
