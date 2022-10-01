@@ -1,34 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../static/css/txnsucess.css" >
+    <link rel="stylesheet" href="../static/css/txnsucess.css">
 </head>
-<body>          
+
+<body>
     <div class="navbar">
         <p class="start">REVIEWGO</p>
-        <div>
-            <button class="end">LOGIN</button>
 
-            <button class="end">SIGNUP</button>
-        </div>
 
 
     </div>
 
     <div class="main_container">
-          <img src="../static/images/txnfailed.png" alt="" class="final">
-          <h2>Verification Unsuccessful</h2>
-          <p class="al">Your Algorand Transaction Failed!</p>
-          
+        <img src="../static/images/txnfailed.png" alt="" class="final">
+        <h2>Verification Unsuccessful</h2>
+        <p class="al">Your Algorand Transaction Failed!</p>
+        <a href="https://testnet.algoexplorer.io/tx/{{txnid}}">
+            <p class="al">You can verify the transaction here</p>
+        </a>
 
-            <br>
-            
-            <!-- <p>Go <a href="">Back to Hospital Page </a> or <a href="">Home Page</a></p> -->
+
+        <br>
+
+        <!-- <p>Go <a href="">Back to Hospital Page </a> or <a href="">Home Page</a></p> -->
     </div>
-    
+
 </body>
+
 </html>

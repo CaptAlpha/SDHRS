@@ -64,6 +64,7 @@
                         var reviewList = "{{reviewList}}".split("||");
                         var ratingList = "{{ratingList}}".split("||");
                         var dateList = "{{dateList}}".split("||");
+                        var confidenceList = "{{confidenceList}}".split("||");
                         // get container2
                         var container2 = document.getElementsByClassName("container2")[0];
                         // loop through all reviews
@@ -83,7 +84,10 @@
                                 rating.appendChild(img);
                             }
                             div.appendChild(rating);
-
+                            // create p
+                            var c = document.createElement("c");
+                            // add text
+                            c.innerText = 'Confidence: ' + confidenceList[i];
                             // create p
                             var p = document.createElement("p");
                             // add text
@@ -95,6 +99,7 @@
                             // append img, p, p2 to div
                             // div.appendChild(img);
 
+                            div.appendChild(c);
                             div.appendChild(p);
                             div.appendChild(p2);
                             // append div to container2

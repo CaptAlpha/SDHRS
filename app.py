@@ -37,10 +37,12 @@ def index():
         reviewList=[]
         ratingList=[]
         dateList=[]
+        confidenceList=[]
         for review in reviews:
             reviewList.append(review.review)
             ratingList.append(float(review.rating))
             dateList.append(review.date_created)
+            confidenceList.append(review.confidence)
         print(ratingList)
         avgRating=sum(ratingList)/len(ratingList)
         avgRating=round(avgRating,2)
@@ -60,8 +62,9 @@ def index():
         reviewString='||'.join(reviewList)
         ratingString='||'.join(ratingList)
         dateString='||'.join(dateList)
+        confidenceString='||'.join(confidenceList)
         #redirect to transaction route
-        return redirect(url_for('addReview', hospitalName=hospitalName, cityName=cityName, speciality=speciality,reviewList=reviewString,avgRating=avgRating, ratingList=ratingString, dateList=dateString))
+        return redirect(url_for('addReview', hospitalName=hospitalName, cityName=cityName, speciality=speciality,reviewList=reviewString,avgRating=avgRating, ratingList=ratingString, dateList=dateString, confidenceList=confidenceString))
 
     return render_template('index.html')
 
@@ -69,9 +72,8 @@ def index():
 def addReview():
     if request.method=='POST':
         return redirect(url_for('txn'))
-    return render_template('index2.html', hospitalName=request.args.get('hospitalName'), cityName=request.args.get('cityName'), speciality=request.args.get('speciality'), reviewList=request.args.get('reviewList'),ratingList=request.args.get('ratingList'),avgRating=request.args.get('avgRating'),dateList=request.args.get('dateList'))
-
-CLIENT_PASSP = ''
+    return render_template('index2.html', hospitalName=request.args.get('hospitalName'), cityName=request.args.get('cityName'), speciality=request.args.get('speciality'), reviewList=request.args.get('reviewList'),ratingList=request.args.get('ratingList'),avgRating=request.args.get('avgRating'),dateList=request.args.get('dateList'), confidenceList=request.args.get('confidenceList'))
+    
 
 @app.route('/transaction', methods=['GET', 'POST'])
 def txn():
@@ -79,6 +81,8 @@ def txn():
         review = request.form['review']
         pp = request.form['pp']
         hospitalName = request.form['hospitalName']
+        rating=request.form['rating']
+        print(rating)
         algod_address = "https://testnet-algorand.api.purestake.io/ps2"
         algod_token = ""
         headers = {
@@ -117,7 +121,7 @@ def txn():
         else:
             print("Transaction Failed")
             txnStr = str('Transaction Failed')
-        return redirect(url_for('success', result=txnStr, VERIFICATION_TOKEN=VERIFICATION_TOKEN, hospitalName=hospitalName, review=review, client_pp=client_pp))
+        return redirect(url_for('success', result=txnStr, VERIFICATION_TOKEN=VERIFICATION_TOKEN, hospitalName=hospitalName, review=review, client_pp=client_pp,rating=rating))
         
     return render_template('transaction.html')
 
@@ -129,17 +133,22 @@ def success():
     hospitalName = request.args.get('hospitalName')
     CLIENT_PASSP = request.args.get('client_pp')
     review = request.args.get('review')
+    rating = request.args.get('rating')
     if(VERIFICATION_TOKEN):
         #check genuinity of the review
         response = co.classify(inputs=[review], model='996de6b6-76c2-411b-97b7-aa58f15e75ad-ft')
         prediction=response.classifications[0].prediction
         confidence=response.classifications[0].confidence[int(prediction)].confidence
+        confidence=round(confidence*100,2)
         genuinity='genuine' if int(prediction)==0 else 'fake'
         #write the review to the database if it is genuine
         if genuinity=='genuine':
             #get id from hospital name
             hospital=Hospital.query.filter_by(name=hospitalName).first()
             id=hospital.id
+            newReview=Review(name='Anonymous',review=review,hospital_id=id,date_created='01/10/22',confidence=confidence,rating=rating)
+            DB.session.add(newReview)
+            DB.session.commit()
             # Return the transaction back to client
              # my_wallet
             algod_address = "https://testnet-algorand.api.purestake.io/ps2"
@@ -182,9 +191,9 @@ def success():
 
             txid = algod_client.send_transaction(signed_txn)
             
-            return render_template('txnsucess.html', txnid=VERIFICATION_TOKEN,result=genuinity)
+            return render_template('txnsucess.html', txnid=VERIFICATION_TOKEN,result=genuinity,confidence=confidence)
         else:
-            return render_template('failure.html')
+            return render_template('failure.html', txnid=VERIFICATION_TOKEN)
 
     else:
         return render_template('txnfailure.html')
