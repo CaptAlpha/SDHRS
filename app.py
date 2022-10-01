@@ -102,7 +102,7 @@ def txn():
         params = algod_client.suggested_params()
         params.flat_fee = True
         params.fee = 1000
-        send_amount = 10000
+        send_amount = 100000
 
         txn = transaction.PaymentTxn(client_address, params, my_address, send_amount)
         signed_txn = txn.sign(client_SK)
