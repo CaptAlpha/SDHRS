@@ -219,7 +219,12 @@ Project Link: [Hospitalify.US](https://github.com/CaptAlpha/SDHRS)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+<!-- TERMS AND CONDITIONS -->
+## Terms and Conditions
 
+* The user must swear to the fact that the review is genuine. The user must also agree to the fact that the review is not biased and is not a fake review.
+* A small transaction fee is charged to the user for the verification of the review. The transaction fee is charged to the user to prevent spamming of the system. The transaction fee is also charged to the user to prevent the system from being exploited by fake reviews. The fee would be refunded to the user if the review is found to be genuine with an incentive. However, if the review is found to be fake, the transaction fee would be forfeited. If proceeding with the review, the user must agree to the abovementioned terms.
+ 
 
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
