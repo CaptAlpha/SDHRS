@@ -1,62 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="../static/css/transaction.css" >
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="../static/css/transaction.css">
 </head>
 
 <body>
-    <!-- navbar -->
-    <div class="navbar">
-        <p class="start">REVIEWGO</p>
-        <div>
-            <button class="end">LOGIN</button>
+  <!-- navbar -->
+  <div class="navbar">
+    <p class="start">REVIEWGO</p>
 
-            <button class="end">SIGNUP</button>
+
+
+  </div>
+  <div class="form_container">
+
+    <div class="container3">
+      <button class="bt2"><img src="../static/images/Arrow.png" alt="" class="arr"><span
+          class="back">Back</span></button>
+      <div>
+        <img src="../static/images/cmpimg.png" alt="" class="pcimg">
+      </div>
+    </div>
+
+    <div class="myform">
+      <form action="" method="POST">
+        <div class="div1">
+          <label for=""><b>Hospital Name</b></label>
+          <br>
+          <input type="text" id="w3review" name="hospitalName" placeholder="Enter name" class="txt"></input>
+        </div>
+        <div class="div1">
+          <label for=""><b>Review</b></label>
+          <br>
+          <textarea id="w3review" name="review" rows="8" cols="50" placeholder="Enter review" class="txt"></textarea>
+        </div>
+        <br>
+        <div class="div1">
+          <label for=""><b>Rating</b></label>
+          <br>
+          <input type="range" name="rating" id="" min="0" max="5" step="0.5">
+        </div>
+        <br>
+        <div class="div1">
+          <label for="pp"><b>Algorand Pass Phrase</b></label>
+          <br>
+          <input type="text" placeholder="Capture here" class="text" name="pp">
+          <br>
         </div>
 
 
-    </div>
-    <div class="form_container">
-        
-        <div class="container3">
-            <button class="bt2"><img src="../static/images/Arrow.png" alt="" class="arr"><span class="back">Back</span></button>
-          <div>
-            <img src="../static/images/cmpimg.png" alt="" class="pcimg">
-          </div>
-       </div>
-
-       <div class="myform">
-        <form action="" method="POST">
-            <div class="div1">
-                <label for=""><b>Hospital Name</b></label>
-               <br>
-               <input type="text" id="w3review" name="hospitalName" placeholder="Enter name" class="txt"></input>
-              </div>
-            <div class="div1">
-              <label for=""><b>Review</b></label>
-             <br>
-             <textarea id="w3review" name="review" rows="8" cols="50" placeholder="Enter review" class="txt"></textarea>
-            </div>
-            <br>
-            <div class="div1">
-             <label for=""><b>Rating</b></label>
-            <br>
-              <input type="range" name="" id="" min="0" max="10">
-            </div>
-            <br>
-            <div class="div1">
-            <label for="pp"><b>Algorand Pass Phrase</b></label>
-            <br>
-            <input type="text" placeholder="Capture here" class="text" name="pp">
-            <br>
-            </div>
-             
-           
-            <input type="submit" value="Pay 1 Algo" class="submit"">
+        <input type="submit" value="Pay 1 Algo" class="submit"">
 
         </form>
       </div>
