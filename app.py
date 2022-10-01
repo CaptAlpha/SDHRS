@@ -140,8 +140,13 @@ def success():
             newReview=Review(name='Anonymous',review=review,hospital_id=id,date_created='01/10/22')
             DB.session.add(newReview)
             DB.session.commit()
-        return render_template('success.html', txnid=VERIFICATION_TOKEN,result=genuinity)
-    return render_template('success.html', result=VERIFICATION_TOKEN)
+            return render_template('txnsucess.html', txnid=VERIFICATION_TOKEN,result=genuinity)
+        else:
+            return render_template('failure.html')
+
+    else:
+        return render_template('txnfailure.html')
+    return render_template('txnsucess.html', result=VERIFICATION_TOKEN)
 
 
 if __name__ == '__main__':
