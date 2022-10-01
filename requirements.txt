@@ -1,7 +1,7 @@
 cohere==2.5.0
-Flask==2.1.0
-Flask_SQLAlchemy==2.4.4
-matplotlib==3.4.2
+Flask
+Flask_SQLAlchemy
+matplotlib==3.2
 wordcloud==1.8.1
 werkzeug== 2.0.3
 certifi==2022.9.24
@@ -11,7 +11,7 @@ docopt==0.6.2
 idna==3.4
 msgpack==1.0.4
 pipreqs==0.4.11
-py-algorand-sdk==1.18.0
-requests==2.28.1
+py-algorand-sdk
+requests
 urllib3==1.26.12
-
+pandas

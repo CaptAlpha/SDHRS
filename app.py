@@ -21,11 +21,31 @@ app.config['SQLALCHEMY_DATABASE_URI']='sqlite:///hospitalReview.db'
 
 #SQLALCHEMY_TRACK_MODIFICATIONS = False
 
-
 VERIFICATION_TOKEN = ''
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
+    hospitals=Hospital.query.all()
+    hospital_names=[hospital.name for hospital in hospitals]
+    hospital_ids=[hospital.id for hospital in hospitals]
+    #get avgRatings from db using review table
+    avgRatings=[]
+    for hospital in hospitals:
+        reviews=Review.query.filter_by(hospital_id=hospital.id).all()
+        if len(reviews)==0:
+            avgRatings.append(0)
+        else:
+            avgRatings.append(sum([review.rating for review in reviews])/len(reviews))
+    #get city of hospitals from db using city table
+    cities=[]
+    for hospital in hospitals:
+        city=City.query.filter_by(id=hospital.city_id).first()
+        cities.append(city.name)
+    #get speciality of hospitals from db using hospital table
+    specialities=[]
+    for hospital in hospitals:
+        specialities.append(hospital.speciality)
+    
     if request.method == 'POST':
         hosp=request.form['hospitalName']
         #get hospital city,speciality,reviews from the database
@@ -66,7 +86,7 @@ def index():
         #redirect to transaction route
         return redirect(url_for('addReview', hospitalName=hospitalName, cityName=cityName, speciality=speciality,reviewList=reviewString,avgRating=avgRating, ratingList=ratingString, dateList=dateString, confidenceList=confidenceString))
 
-    return render_template('index.html')
+    return render_template('index.html',hospital_names=hospital_names,avgRatings=avgRatings,cities=cities,specialities=specialities)
 
 @app.route('/addReview', methods=['GET', 'POST'])
 def addReview():
