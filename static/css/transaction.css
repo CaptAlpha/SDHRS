@@ -2,6 +2,7 @@ body {
     background-image: url(../images/bg2.svg);
     background-size: 70%;
     background-repeat: repeat-x;
+    font-family: 'Manrope', sans-serif;
     
 }
 textarea, input { outline: none; }
