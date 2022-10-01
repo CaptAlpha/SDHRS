@@ -19,6 +19,9 @@ DB.init_app(app)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 app.config['SQLALCHEMY_DATABASE_URI']='sqlite:///hospitalReview.db'
 
+#SQLALCHEMY_TRACK_MODIFICATIONS = False
+
+
 VERIFICATION_TOKEN = ''
 
 @app.route('/', methods=['GET', 'POST'])
