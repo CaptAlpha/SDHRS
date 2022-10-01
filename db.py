@@ -34,6 +34,7 @@ class Review(DB.Model):
     review=DB.Column(DB.String(100),nullable=False)
     date_created=DB.Column(DB.VARCHAR(10))
     rating=DB.Column(DB.Numeric,nullable=True,default=4)
+    confidence=DB.Column(DB.String(5),nullable=True,default=90.0)
 
     def __repr__(self):
         return '<Review %r>' % self.id

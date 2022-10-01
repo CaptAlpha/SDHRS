@@ -37,10 +37,12 @@ def index():
         reviewList=[]
         ratingList=[]
         dateList=[]
+        confidenceList=[]
         for review in reviews:
             reviewList.append(review.review)
             ratingList.append(float(review.rating))
             dateList.append(review.date_created)
+            confidenceList.append(review.confidence)
         print(ratingList)
         avgRating=sum(ratingList)/len(ratingList)
         avgRating=round(avgRating,2)
@@ -60,8 +62,9 @@ def index():
         reviewString='||'.join(reviewList)
         ratingString='||'.join(ratingList)
         dateString='||'.join(dateList)
+        confidenceString='||'.join(confidenceList)
         #redirect to transaction route
-        return redirect(url_for('addReview', hospitalName=hospitalName, cityName=cityName, speciality=speciality,reviewList=reviewString,avgRating=avgRating, ratingList=ratingString, dateList=dateString))
+        return redirect(url_for('addReview', hospitalName=hospitalName, cityName=cityName, speciality=speciality,reviewList=reviewString,avgRating=avgRating, ratingList=ratingString, dateList=dateString, confidenceList=confidenceString))
 
     return render_template('index.html')
 
@@ -69,7 +72,7 @@ def index():
 def addReview():
     if request.method=='POST':
         return redirect(url_for('txn'))
-    return render_template('index2.html', hospitalName=request.args.get('hospitalName'), cityName=request.args.get('cityName'), speciality=request.args.get('speciality'), reviewList=request.args.get('reviewList'),ratingList=request.args.get('ratingList'),avgRating=request.args.get('avgRating'),dateList=request.args.get('dateList'))
+    return render_template('index2.html', hospitalName=request.args.get('hospitalName'), cityName=request.args.get('cityName'), speciality=request.args.get('speciality'), reviewList=request.args.get('reviewList'),ratingList=request.args.get('ratingList'),avgRating=request.args.get('avgRating'),dateList=request.args.get('dateList'), confidenceList=request.args.get('confidenceList'))
     
 
 @app.route('/transaction', methods=['GET', 'POST'])
@@ -131,16 +134,17 @@ def success():
         response = co.classify(inputs=[review], model='996de6b6-76c2-411b-97b7-aa58f15e75ad-ft')
         prediction=response.classifications[0].prediction
         confidence=response.classifications[0].confidence[int(prediction)].confidence
+        confidence=round(confidence*100,2)
         genuinity='genuine' if int(prediction)==0 else 'fake'
         #write the review to the database if it is genuine
         if genuinity=='genuine':
             #get id from hospital name
             hospital=Hospital.query.filter_by(name=hospitalName).first()
             id=hospital.id
-            newReview=Review(name='Anonymous',review=review,hospital_id=id,date_created='01/10/22')
+            newReview=Review(name='Anonymous',review=review,hospital_id=id,date_created='01/10/22',confidence=confidence)
             DB.session.add(newReview)
             DB.session.commit()
-        return render_template('success.html', txnid=VERIFICATION_TOKEN,result=genuinity)
+        return render_template('success.html', txnid=VERIFICATION_TOKEN,result=genuinity,confidence=confidence)
     return render_template('success.html', result=VERIFICATION_TOKEN)
 
 
