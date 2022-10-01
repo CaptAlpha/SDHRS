@@ -12,7 +12,7 @@ body{
     color: white;
     width:5vw;
     height: 3vh;
-    padding-bottom: 2.5vh;
+    padding-bottom: 1vh;
     padding-left: 2vh;
     display: flex;
     flex-direction: row;
@@ -24,7 +24,9 @@ textarea, input { outline: none; }
     margin-right:5px ;
 }
 .up {
+    font-size: 15px;
   font-weight: bold;
+    margin-top: 1.8vh;
 }
 .start {
     font-family: 'Manrope', sans-serif;
@@ -161,6 +163,7 @@ cursor: pointer;
     align-items: center;
     justify-content: space-around;
     margin-left: 1vh;
+    margin-bottom: 3.5vh;
 }
 .hospitalName {
     width:14vw;
