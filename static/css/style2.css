@@ -82,9 +82,11 @@ cursor: pointer;
     justify-content: center;
     font-size: 1vw;
     font-family: 'Poppins', sans-serif;
-    width: 50%;
+    width: 55%;
     background-color: white;
-    padding-top: 30%;
+    padding-top: 12%;
+    padding-bottom: 10%;
+    border-radius: 10px;
     
 }
 .hospitalimg {
@@ -132,7 +134,10 @@ cursor: pointer;
 /* .container1{
     margin-top: 20vh;
 } */
-
+.cont_c2b {
+    display: flex;
+    margin-top:2vh;
+}
 .container2 {
     display: flex;
     flex-direction:column;
@@ -153,11 +158,11 @@ cursor: pointer;
 .c2a {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    gap: 3vh;
-    height: 40%;
-    margin-bottom: 3vh;
+    gap: 2vh;
+    /* margin-bottom: 3vh; */
+    margin-top: 51vh;
 }
 .c2b {
     display: flex;
@@ -170,22 +175,6 @@ cursor: pointer;
     background-color: white;
     font-size: 15px;
     height: fit-content;
-    margin-top: 5px;
-}
-.c2c {
-    
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        border: solid;
-        border-color: transparent;
-        border-radius: 5px;
-        width: 90%;
-        background-color: white;
-        font-size: 15px;
-        height: fit-content;
-        
-    
 }
 .c2b p {
     margin-top: 1vh;
@@ -200,7 +189,8 @@ cursor: pointer;
     justify-content: center;
     align-items: center;
     background-color: white;
-    margin-top: 5px;
+    height: 40vh;
+    border-radius: 10px;
 }
 
 .clic {
