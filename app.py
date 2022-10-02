@@ -166,7 +166,7 @@ def success():
             #get id from hospital name
             hospital=Hospital.query.filter_by(name=hospitalName).first()
             id=hospital.id
-            newReview=Review(name='Anonymous',review=review,hospital_id=id,date_created='01/10/22',confidence=confidence,rating=rating)
+            newReview=Review(name='Anonymous',review=review,hospital_id=id,date_created='02/10/22',confidence=confidence,rating=rating)
             DB.session.add(newReview)
             DB.session.commit()
             # Return the transaction back to client
