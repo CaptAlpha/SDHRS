@@ -1,5 +1,5 @@
 cohere==2.5.0
-Flask
+Flask==2.2.2
 Flask_SQLAlchemy
 matplotlib==3.2
 wordcloud==1.8.1
